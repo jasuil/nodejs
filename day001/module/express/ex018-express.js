@@ -8,8 +8,8 @@ const app = express()
 const static = require('serve-static')
 
 //static folder define
-var dirname = __dirname
-app.use('/static2', static(__dirname + '/static'))
+var dirname = __dirname //current js folder
+app.use('/static2', static('C:/Users/kosmo_21/Documents/GitHub/nodejs/day001/module/static'))
 
 app.get('/', function(req, res){
     console.log('you\'re seeing path /')
