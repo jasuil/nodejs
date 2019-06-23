@@ -8,16 +8,17 @@ const app = express()
 const static = require('serve-static')
 
 //static folder define
-app.use('/static', static(__dirname + '/static'))
+var dirname = __dirname
+app.use('/static2', static(__dirname + '/static'))
 
 app.get('/', function(req, res){
     console.log('you\'re seeing path /')
-    
+    console.log(__dirname)
     res.writeHead(200, {'Content-type':'text/html;charset=utf8'})
     
     res.write('<h1>hi</h1>')
     res.write('<h3>성일짱</h3>')
-    res.write('<img src=\'/static/img/car.jpg\'/>')
+    res.write('<img src=\'/static2/img/car.jpg\'/>')
     res.end() //plz, end loop
     
 })
