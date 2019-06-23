@@ -5,8 +5,10 @@ const express = require('express')
 const app = express()
 const static = require('serve-static')
 const router = express.Router()
+const cors = require('cors')
 
 app.set('port', 3000)
+app.use(cors()) //cross domain issue resolve
 
 //router path register
 //elegance url

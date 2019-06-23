@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>성일짱의 화면</title>
+</head>
+<body>
+    <h2></h2>
+    <input type="text" id="x"/>
+    <input type="text" id="y"/>
+    <select id="op">
+    <option value="plus">plus</option>
+    <option value="minus">minus</option>
+    <option value="multiple">multiple</option>
+    <option value="divide">divide</option>
+    </select>
+    <input type="button" id="okBtn"/>
+    <hr/>
+    result: <div id="result">?? @,@</div>
+    <script>
+    var x = document.querySelector("#x");
+    var y = document.querySelector("#y");
+    var op = document.querySelector("#op");
+    var okBtn = document.querySelector("#okBtn");
+    
+    //console.log("ddd", x.value, y.value, op, okBtn)
+        
+        okBtn.onclick = function(){
+            var url = "http://localhost:3000/";
+            url += op.value + "/" + x.value + "/" + y.value;
+            console.log(url);
+            
+            //ajax
+            var xhr = new XMLHttpRequest();
+            console.log(xhr);
+            
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+  //                  console.log("result is ", this.responseText)
+                    var result = document.querySelector("#result")
+                    result.innerHTML = this.responseText
+                   }
+//                console.log(this.readystate, this.status)
+            }
+            
+            //method : url, true, false
+            xhr.open("GET", url, true) //async request
+            xhr.send(null)
+        }
+    </script>
+</body>
+</html>
