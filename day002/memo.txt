@@ -1,0 +1,9 @@
+######## web hosting or server hosting
+cafe24.com
+
+aws -아마존 웹 서비스(유료)
+azure -ms 클라우드 서비스(유료)
+firebase -구글 클라우드 개발환경(무료)
+heroku
+
+m-lab -monge db cloud
