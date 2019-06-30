@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <h1>user list</h1>
+   <table border="1">
+       <tr>
+           <th>name</th>
+           <th>job</th>
+       </tr>    
+       <% 
+           for(var p of  userList){
+       %>
+        <tr>
+           <td><%=p.name%></td>
+           <td><%=p.job%></td>
+       </tr>
+        <%
+       }
+       %>
+   </table>
+</body>
+</html>
