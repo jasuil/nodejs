@@ -1,0 +1,26 @@
+<html>
+<head>
+    <style>
+        #box{
+        border:1px solid red;
+        background-color:yellow;
+            width: 100px;
+            height: 100px;
+        text-align: center;
+        line-height: 100px
+            
+        }
+    </style>
+    <script>
+        //event handler when document is roading ready
+    window.onload = function(){ // this equals jquery document.ready()
+        var box = document.querySelector("#box")
+        console.log(box)
+    }
+    </script>
+
+</head>
+<body>
+    <div id='box'>i'm box</div>
+</body>
+</html>
