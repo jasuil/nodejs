@@ -23,3 +23,5 @@ realTime DataBase ->
 
 firebase deploy --only hosting //수정된 부분만 배포
 free thema bootstrap //무료 웹 문서
+
+firebase serve //로컬 서버 기동
