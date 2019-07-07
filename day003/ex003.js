@@ -60,7 +60,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     try{
         console.log('upload success')
         var files = req.files;
-        console.log('file is array? ' , Array.isArray(files))
+        console.log('is file array? ' , Array.isArray(files))
         console.dir(files)
         res.end('upload success')
     }catch(err){
