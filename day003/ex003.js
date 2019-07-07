@@ -68,22 +68,6 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         res.end('upload failed')
     }
 })
-                                     
-//product spec page
-router.route('/process/product').get(function(req, res){
-    console.log('process/product')
-    
-    //login need
-    if(req.session.user === undefined){
-        console.log('login need')
-        res.redirect('/public/login.html')
-    }else{
-        req.app.render('product', {}, function(err, html){
-            if(err) throw err;
-            res.end(html)
-        })
-    }
-})
 
 app.use('/', router)
 
