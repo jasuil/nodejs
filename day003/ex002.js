@@ -26,7 +26,7 @@ app.use(cors())
 app.use(bodyParser())
 app.use(cookieParser())
 app.use(expressSession({
-    secret: 'myKey',
+    secret: 'my Key',
     resave: true,
     saveUninitialized: true
 }))
@@ -58,6 +58,7 @@ router.route('/process/login').post(function(req, res){
     if(req.session.user){
         console.log('you have logged in already')
         res.writeHead(200, {'Content-type': 'text/html;charset=utf8'})
+        req.write('<a href="/process/logout">logout</a><br/>')
         req.end('<a href="/process/product">produet specific page</a>')
     }else{
         req.session.user = {
@@ -72,17 +73,22 @@ router.route('/process/login').post(function(req, res){
     
 });
 
-router.route('/process/useCookie').get(function(req, res){
-    
-    console.log('/process/useCookie')
-    
-    res.send({cookie: req.cookies})
-    res.end()
-})
 
 router.route('/process/logout').get(function(req, res){
     console.log('/process/logout')
-    res.end()
+    if(req.session.user != undefined){
+        console.log('session delete')
+        req.session.destroy(function(err){
+            if(err) throw err;
+            console.log('you\'ve logged out')
+         //   res.writeHead(200, {'Content-type': 'text/html;charset=utf8'})
+            res.redirect('/public/login.html')
+        })
+    }else{
+        console.log('not logged in')
+        res.redirect('/public/login.html')
+    }
+   // res.end()
 })
 
 app.use('/', router)
