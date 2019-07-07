@@ -52,7 +52,7 @@ var upload = multer({
     }
 })
 
-//
+
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res){
     console.log('/process/photo')
     
