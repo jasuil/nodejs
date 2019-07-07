@@ -81,14 +81,12 @@ router.route('/process/logout').get(function(req, res){
         req.session.destroy(function(err){
             if(err) throw err;
             console.log('you\'ve logged out')
-         //   res.writeHead(200, {'Content-type': 'text/html;charset=utf8'})
             res.redirect('/public/login.html')
         })
     }else{
         console.log('not logged in')
         res.redirect('/public/login.html')
     }
-   // res.end()
 })
 
 app.use('/', router)
