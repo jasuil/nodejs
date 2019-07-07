@@ -6,5 +6,26 @@
 </head>
 <body>
     <h1>car list</h1>
+    <table border="1">
+        <tr>
+            <th>name</th>
+            <th>price</th>
+            <th>company</th>
+            <th>year</th>
+        </tr>
+    
+    <%
+    for(var car of carlist){
+    %>
+    <tr>
+        <td><a href="/car/<%=car._id %>/detail"><%=car.name %></a></td>    
+        <td><%=car.price %></td>    
+        <td><%=car.comp %></td>    
+        <td><%=car.year %></td>    
+    </tr>
+    <%
+        }
+    %>
+    </table>
 </body>
 </html>

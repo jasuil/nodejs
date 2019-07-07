@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>car detail</title>
+</head>
+<body>
+    <h1>detail specification</h1>
+    <h2>name: <%=cardetail.name%></h2>
+    <h2>price: <%=cardetail.price%></h2>
+    <form action='/car/<%=cardetail._id%>/update/price' method='get'>
+        <input type="number" id="price" name="price">
+        <input type="submit" value="price update">
+    </form>
+    <h2>company: <%=cardetail.comp%></h2>
+    <h2>year: <%=cardetail.year%></h2>
+    <a href="/car/<%=cardetail._id%>/update">update</a>    
+</body>
+</html>
