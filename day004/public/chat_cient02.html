@@ -46,7 +46,7 @@
                     message: $("#message").val()
                 }
                  if(socket == null) {
-                    println('서버에 연결되어 있지 않습니다.');
+                    printLn('서버에 연결되어 있지 않습니다.');
                     return;
                 }
                 socket.emit('message', message
@@ -88,8 +88,5 @@
             
         </tr>
     </table>
-    <script>
-      
-    </script>
 </body>
 </html>
