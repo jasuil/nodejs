@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chat client</title>
+    <script src="js/socket.io.min.js"></script>
+    <script src="jquery.js"></script>
+    <script>
+        var socket
+        var host
+        var port
+        
+        function printLn(msg){
+            console.log(msg)
+            $("#result").append("<br/>" + msg)
+        }
+        function connectToServer(){    
+            host = $("#hostInput").val()
+            port = $("#portInput").val()
+            var url = "http://" + host + ":" + port
+            
+            socket = io.connect(url)
+            socket.on('connect', function(){
+                console.log('chat server has connected')
+                printLn('chat server has connected')
+            })
+            socket.on('disconnect', function(){
+                console.log('connect was aborted')
+                 printLn("chat server was aborted")
+            })
+        }
+    </script>
+</head>
+<body>
+   <h1>client</h1>
+   <div>
+     <input type="text" id="hostInput" value="localhost">
+     <input type="text" id="portInput" value="3000">
+     <input type="button" id="connectButton" value="submit">
+    </div>
+    <h1>result</h1>
+    <div id="result"></div>
+    <table>
+        
+        <tr>
+            <th>sender id</th>
+            <td><input type="text" id="sender" value="test01"></td>
+        </tr>
+        <tr>
+            <th>receipient id</th>
+            <td><input type="text" id="receipient" value="all"></td>
+        </tr>
+        <tr>
+            <th>message</th>
+            <td><input type="text" id="message" value="hi"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+            <button id="sendBtn">send</button>
+            </td>
+            
+        </tr>
+    </table>
+    <script>
+        $(document).ready(function(){
+            $("#connectButton").click(function(){
+                connectToServer()
+            })
+        })
+    </script>
+</body>
+</html>

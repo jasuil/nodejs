@@ -13,13 +13,12 @@
         var size = 0;
         var setInit = function(){
             var xhr = new XMLHttpRequest();
-            var url = "http://localhost:3000/count/0" 
-            if(size > 0) url = "http://localhost:3000/count/" + size;
+            var url = "http://localhost:3000/init" 
             
             xhr.onreadystatechange = function() {
-                   if(this.readyState == 1 && this.status == 4){
+                   if(this.readyState == 4 && this.status == 200){
                        console.log("init " + this.responseText)
-                       size = parseInt(this.responseText) + 1;
+                       size = parseInt(this.responseText);
                    }
                 
             }
@@ -31,20 +30,24 @@
             var xhr = new XMLHttpRequest();
             var url = "http://localhost:3000/count/" + size;
             
-            xhr.onreadystatechange = function() {
-                
-             console.log('getting '+ this.readyState + '; ' + this.status)
-                
-                   if(this.readyState == 4 && this.status == 200){
-                       var data = parseInt(this.responseText);
-                       if(data > size) size = data + 1
-                       document.querySelector('#count').innerHTML = data;
-                       console.log('get => ' + size)
-                   }
-                
-            }
-            xhr.open("get", url, true);
-            xhr.send();
+             console.log('action size ' + size)
+             if(size > 0){
+                xhr.onreadystatechange = function() {
+
+                 console.log('getting '+ this.readyState + '; ' + this.status)
+
+                       if(this.readyState == 4 && this.status == 200){
+                           var data = parseInt(this.responseText);
+                        
+                           document.querySelector('#count').innerHTML = data;
+                           console.log('get => ' + size)
+                       }
+
+                }
+                xhr.open("get", url, true);
+                xhr.send();
+             }
+             
         }
          
         setInit()
