@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>counter</title>
+    <script src="/public/jquery.js"></script>
+</head>
+
+<body>
+    <span id="count">0</span>
+    <script>
+        var size = 0;
+        var setInit = function(){
+            var xhr = new XMLHttpRequest();
+            var url = "http://localhost:3000/count/0" 
+            if(size > 0) url = "http://localhost:3000/count/" + size;
+            
+            xhr.onreadystatechange = function() {
+                   if(this.readyState == 1 && this.status == 4){
+                       console.log("init " + this.responseText)
+                       size = parseInt(this.responseText) + 1;
+                   }
+                
+            }
+            xhr.open("get", url, true);
+            xhr.send();
+        }
+        
+         var action = function(){
+            var xhr = new XMLHttpRequest();
+            var url = "http://localhost:3000/count/" + size;
+            
+            xhr.onreadystatechange = function() {
+                
+             console.log('getting '+ this.readyState + '; ' + this.status)
+                
+                   if(this.readyState == 4 && this.status == 200){
+                       var data = parseInt(this.responseText);
+                       if(data > size) size = data + 1
+                       document.querySelector('#count').innerHTML = data;
+                       console.log('get => ' + size)
+                   }
+                
+            }
+            xhr.open("get", url, true);
+            xhr.send();
+        }
+         
+        setInit()
+        setInterval(action, 500)
+    </script>
+</body>
+
+</html>
