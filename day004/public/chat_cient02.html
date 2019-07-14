@@ -23,12 +23,40 @@
             socket.on('connect', function(){
                 console.log('chat server has connected')
                 printLn('chat server has connected')
+                
+                socket.on('message', function(data){
+                    printLn(data.sender)
+                    printLn(data.message)
+                })
             })
             socket.on('disconnect', function(){
                 console.log('connect was aborted')
                  printLn("chat server was aborted")
             })
         }
+        
+          $(document).ready(function(){
+            $("#connectButton").click(function(){
+                connectToServer()
+            })
+            $("#sendBtn").click(function(){
+                message = {
+                    sender: $("#sender").val(),
+                    receipient: $("#receipient").val(),
+                    message: $("#message").val()
+                }
+                 if(socket == null) {
+                    println('서버에 연결되어 있지 않습니다.');
+                    return;
+                }
+                socket.emit('message', message
+                    , function(data){
+                    var receivedData = data
+                    console.log('received ' + receivedData)
+                    
+                })
+            })
+        })
     </script>
 </head>
 <body>
@@ -40,8 +68,7 @@
     </div>
     <h1>result</h1>
     <div id="result"></div>
-    <table>
-        
+    <table border="2">
         <tr>
             <th>sender id</th>
             <td><input type="text" id="sender" value="test01"></td>
@@ -62,11 +89,7 @@
         </tr>
     </table>
     <script>
-        $(document).ready(function(){
-            $("#connectButton").click(function(){
-                connectToServer()
-            })
-        })
+      
     </script>
 </body>
 </html>

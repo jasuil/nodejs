@@ -21,4 +21,11 @@ const io = socketIo.listen(server)
 
 io.sockets.on('connection', function(socket){
     console.log('socket server has conneted')
+    
+    socket.on('message', function(data){
+    
+        console.log('received ', data)
+        
+        socket.emit('message', data)
+    })
 })
